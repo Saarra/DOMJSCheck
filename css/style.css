@@ -22,10 +22,13 @@
     width: 100px !important;
     height: 100px !important;
 }
-a:hover{
+a:hover {
     text-decoration: none;
 }
 
-.fa {
-    color: red;
+.fa-heart {
+
+    size: 50px;
+    float: right;
 }
+

@@ -1,25 +1,30 @@
 // get elements
-let addToCartButtons = document.getElementsByClassName('btn-primary')
-let cartContainer = document.getElementsByTagName('tbody')[0]
-let quantityFields = document.getElementsByClassName('num')
-let delete_buttons = document.getElementsByClassName('uk-button-danger')
-let hearts = document.getElementsByClassName('fa')
+var addToCartButtons = document.getElementsByClassName('btn-primary')
+var cartContainer = document.getElementsByTagName('tbody')[0]
+var quantityFields = document.getElementsByClassName('num')
+var delete_buttons = document.getElementsByClassName('uk-button-danger')
+var hearts=Array.from(document.getElementsByClassName("fa-heart"))
 
-// picking up all the Add-To-Cart buttons
-for(let i = 0; i < addToCartButtons.length; i++){
-    addToCartButtons[i].addEventListener('click', addToCart)
-    
-}
 
-for (let i = 0; i < hearts.length; i++) {
-    hearts[i].addEventListener('click', colorheart)
-    
-}
+// const whiteHeart = '\u2661';
+// const blackHeart = '\u2665';
+// const button = document.querySelector('button');
+// button.addEventListener('click', toggle);
 
-function colorheart() {
-    let heart = e.target
-     heart.className("fa fa-heart d-flex justify-content-end")
-    console.log(heart)
+// function toggle() {
+//   const like = button.textContent;
+//   if(like==whiteHeart) {
+//     button.textContent = blackHeart;
+//   } else {
+//     button.textContent = whiteHeart;
+//   }
+// }
+
+for(let heart of hearts){
+    heart.addEventListener('click',function(){
+        if(heart.style.color!=="red") heart.style.color="red"
+        else heart.style.color="#212529"
+    })
 }
 
 // This function add items to shopping cart
@@ -74,9 +79,6 @@ function totalCost(event){
     if(isNaN(quantity.value)|| quantity.value <= 0){
         quantity.value = 1
     }
-
-    
-    
 }
 
 // This function  add up the total of the items
