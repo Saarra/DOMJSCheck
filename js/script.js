@@ -1,34 +1,18 @@
-// get elements
-var addToCartButtons = document.getElementsByClassName('btn-primary')
-var cartContainer = document.getElementsByTagName('tbody')[0]
-var quantityFields = document.getElementsByClassName('num')
-var delete_buttons = document.getElementsByClassName('uk-button-danger')
+let addToCartButtons = document.getElementsByClassName('btn-primary')
+let cartContainer = document.getElementsByTagName('tbody')[0]
+let quantityFields = document.getElementsByClassName('num')
+let delete_buttons = document.getElementsByClassName('uk-button-danger')
 var hearts=Array.from(document.getElementsByClassName("fa-heart"))
 
-
-// const whiteHeart = '\u2661';
-// const blackHeart = '\u2665';
-// const button = document.querySelector('button');
-// button.addEventListener('click', toggle);
-
-// function toggle() {
-//   const like = button.textContent;
-//   if(like==whiteHeart) {
-//     button.textContent = blackHeart;
-//   } else {
-//     button.textContent = whiteHeart;
-//   }
-// }
-
-for(let heart of hearts){
-    heart.addEventListener('click',function(){
-        if(heart.style.color!=="red") heart.style.color="red"
-        else heart.style.color="#212529"
-    })
+// picking up all the Add-To-Cart buttons
+for(let i = 0; i < addToCartButtons.length; i++){
+    addToCartButtons[i].addEventListener('click', addToCart)
+    
 }
+// This function helps to add items to our cart
+function addToCart(event){
 
-// This function add items to shopping cart
-function addToCart(event){    
+    
     let itemContainer = document.createElement('tr')
     let btn = event.target
     let btnGrandParent = btn.parentElement.parentElement
@@ -39,6 +23,7 @@ function addToCart(event){
     
     
     itemContainer.innerHTML = `
+    <td><input class="uk-checkbox" type="checkbox"></td>
     <td><img class="uk-preserve-width uk-border-circle" src=${itemImage} width="40" alt=""></td>
     <td class="uk-table-link">
         <h3 class = "item-name">${itemName}</h3>
@@ -67,7 +52,7 @@ function addToCart(event){
 
 
 
-// This function  multiply the quantity and the price
+// This function helps to multiply the quantity and the price
 function totalCost(event){
     let quantity = event.target
     quantity_parent = quantity.parentElement.parentElement
@@ -79,9 +64,12 @@ function totalCost(event){
     if(isNaN(quantity.value)|| quantity.value <= 0){
         quantity.value = 1
     }
+
+    
+    
 }
 
-// This function  add up the total of the items
+// This function helps to add up the total of the items
 function grandTotal(){
     let total = 0
     let grand_total = document.getElementsByClassName('grand-total')[0]
@@ -102,4 +90,13 @@ function removeItem(event){
     del_btn_parent.remove()
     console.log(del_btn)
     grandTotal()
+    
+}
+
+
+for(let heart of hearts){
+    heart.addEventListener('click',function(){
+        if(heart.style.color!=="red") heart.style.color="red"
+        else heart.style.color="#212529"
+    })
 }
